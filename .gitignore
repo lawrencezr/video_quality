@@ -4,3 +4,4 @@
 clean/
 detect_error_video/
 wav/
+__pycache__/
