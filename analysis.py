@@ -12,7 +12,7 @@ FRONT_IGNORE = 2  # 忽略视频头部的时长阈值
 MIN_TIME = 10  # 视频的最小时长阈值
 BLACK_TIME = 1  # 判断为黑屏的时长阈值
 # BLACK_NUM = 5  # 最大黑屏的次数阈值
-FREEZE_DIFF = 1  # 判断为静帧的变化阈值
+FREEZE_DIFF = 2  # 判断为静帧的变化阈值
 FREEZE_TIME = 1  # 判断为静帧的时长阈值
 
 
@@ -40,11 +40,11 @@ def video_test(video_path):
         print("总帧数：", frame_count)
         fps = cap.get(cv2.CAP_PROP_FPS)
         print("帧率：", fps)
-        num = frame_count - fps * (BACK_IGNORE+FRONT_IGNORE)
         # 视频时长检测
         if frame_count <= MIN_TIME*fps:
             print("视频时长不足！")
             return False
+        num = frame_count - fps * (BACK_IGNORE+FRONT_IGNORE)
         #
         # is_read, frame = cap.read()
         # row = frame.shape[0]
@@ -101,7 +101,7 @@ def video_test(video_path):
             num -= 1
         cap.release()
         end = time.time()
-        print("处理用时：",end-start)
+        print("图像处理用时：",end-start)
         # return is_black
 
 
@@ -116,5 +116,5 @@ if __name__ == '__main__':
             file_path = os.path.join(root_path,folder,v)
             video_test(file_path)
     end = time.time()
-    print("总用时：", end-start)
+    # print("总用时：", end-start)
     # video_test("test/1.mp4")

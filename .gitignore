@@ -1,3 +1,6 @@
 /test/
 /logs/
-/.idea
+.idea/
+clean/
+detect_error_video/
+wav/
